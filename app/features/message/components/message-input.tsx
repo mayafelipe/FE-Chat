@@ -1,9 +1,25 @@
 "use client";
 
-import React, { useState } from "react";
+import { useChatStore } from "@/app/store/chat-store";
+import React, { KeyboardEvent, useState } from "react";
 
 const MessageInput = () => {
   const [message, setMessage] = useState<string>("");
+  const { sendMessage } = useChatStore();
+
+  const handleSendMessage = () => {
+    if (!message.trim()) return;
+    const currentMessage = message;
+    setMessage("");
+    sendMessage(currentMessage);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
   return (
     <div className="bg-cyan-600 p-2">
       <div className="mx-auto flex max-w-160 gap-2">
@@ -12,10 +28,14 @@ const MessageInput = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Message"
+          onKeyDown={handleKeyDown}
         />
         <button
-        className="rounded-md bg-red-400 px-6 py-3 font-semibold text-white "
-        >Send</button>
+          onClick={handleSendMessage}
+          className="rounded-md bg-red-400 px-6 py-3 font-semibold text-white "
+        >
+          Send
+        </button>
       </div>
     </div>
   );
