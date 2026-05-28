@@ -1,12 +1,19 @@
 "use client";
-import React, { FC, JSX } from "react";
+import React, { FC, JSX, useEffect, useRef } from "react";
 import { MessageListProps } from "../interface/message-list.interface";
 
 const MessageList: FC<MessageListProps> = ({ messages }): JSX.Element => {
-  
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [messages]);
+
   return (
-    <div className="flex-1 overflow-y-auto p-4">
-      <div className="mx-auto flex max-w-4xl flex-col gap-4">
+    <div className="flex-1 overflow-y-auto">
+      <div className="mx-auto flex max-w-160 flex-col gap-4 px-6 lg:px-0 pt-4">
         {messages?.map((message) => (
           <div
             key={message.id}
@@ -40,6 +47,7 @@ const MessageList: FC<MessageListProps> = ({ messages }): JSX.Element => {
             </time>
           </div>
         ))}
+        <div ref={bottomRef} />
       </div>
     </div>
   );
