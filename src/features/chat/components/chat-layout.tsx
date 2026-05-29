@@ -1,5 +1,5 @@
 "use client";
-import { useChatStore } from "@/app/features/chat/store/chat-store";
+import { useChatStore } from "../store/chat-store";
 import MessageInput from "./message-input";
 import MessageList from "./message-list";
 import { ChatSiderbar } from "./chat-sidebar";

@@ -1,8 +1,8 @@
 "use client";
 
-import { useChatStore } from "@/app/features/chat/store/chat-store";
 import React, { JSX, KeyboardEvent, useState } from "react";
 import { AUTHOR } from "../constants/chat-constants";
+import { useChatStore } from "../store/chat-store";
 
 const MessageInput = (): JSX.Element => {
   const [message, setMessage] = useState<string>("");

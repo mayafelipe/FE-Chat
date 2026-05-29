@@ -1,3 +1,4 @@
+
 import { httpClient } from "../../../lib/http-client";
 import { Message, SendMessageInput } from "../types/chat.type";
 
@@ -8,7 +9,7 @@ export async function sendMessageRequest(
     method: "POST",
     body: JSON.stringify(payload),
   });
-  console.log("Sda", response)
+  console.log("Sda", response);
   return response;
 }
 
