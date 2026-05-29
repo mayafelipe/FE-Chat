@@ -1,6 +1,7 @@
 "use client";
 import React, { FC, JSX, useEffect, useRef } from "react";
-import { MessageListProps } from "../interface/message-list.interface";
+import { MessageListProps } from "../types/chat.type";
+import { AUTHOR } from "../constants/chat-constants";
 
 const MessageList: FC<MessageListProps> = ({ messages }): JSX.Element => {
   const bottomRef = useRef<HTMLDivElement | null>(null);
@@ -18,26 +19,26 @@ const MessageList: FC<MessageListProps> = ({ messages }): JSX.Element => {
           <div
             key={message._id}
             className={
-              message.author === "user1"
+              message.author === AUTHOR
                 ? "lg:max-w-[60%] max-w-[68%] self-end rounded-2xl bg-yellow-100 border border-gray-300 min-w-37.5"
                 : "lg:max-w-[60%] max-w-[68%] self-start rounded-2xl bg-white border-gray-300 p-4 min-w-37.5"
             }
           >
             <span
               className={
-                message.author === "user1"
+                message.author === AUTHOR
                   ? "hidden"
                   : "text-gray-400 text-[0.9rem]"
               }
             >
               {message.author}
             </span>
-            <p className={message.author === "user1" ? "p-4" : ""}>
+            <p className={message.author === AUTHOR ? "p-4" : ""}>
               {message.message}
             </p>
             <time
               className={
-                message.author === "user1"
+                message.author === AUTHOR
                   ? "text-gray-400 text-[0.9rem] block text-end pr-2 pb-1"
                   : "text-gray-400 text-[0.9rem] block pr-2 pb-1"
               }

@@ -1,7 +1,8 @@
 "use client";
 
-import { useChatStore } from "@/app/store/chat-store";
+import { useChatStore } from "@/app/features/chat/store/chat-store";
 import React, { JSX, KeyboardEvent, useState } from "react";
+import { AUTHOR } from "../constants/chat-constants";
 
 const MessageInput = (): JSX.Element => {
   const [message, setMessage] = useState<string>("");
@@ -13,7 +14,7 @@ const MessageInput = (): JSX.Element => {
     setMessage("");
     await sendMessage({
       message: currentMessage,
-      author: "Felipe Maya"
+      author: AUTHOR
     });
   };
 

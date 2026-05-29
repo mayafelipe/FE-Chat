@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { Message, SendMessageInput } from "../types/chat.type";
-import { messagesMock } from "../features/message/mock/messages.mock";
 import {
   getMessagesRequest,
   sendMessageRequest,
@@ -14,7 +13,7 @@ interface ChatState {
 }
 
 export const useChatStore = create<ChatState>((set, get) => ({
-  messages: messagesMock,
+  messages: [],
   isLoading: false,
   sendMessage: async (content) => {
     const userMessage: SendMessageInput = content;
@@ -31,6 +30,9 @@ export const useChatStore = create<ChatState>((set, get) => ({
       set({
         messages: [...get().messages, assistantMessage],
       });
+
+      //Fetch messages when post is successful
+      await get().getMessages()
     } catch {
       set({
         messages: [
@@ -52,7 +54,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
       isLoading: true,
     });
     try {
-      //Get message
+      //Get messages
       const response = await getMessagesRequest();
 
       //Update chat state

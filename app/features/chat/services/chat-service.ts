@@ -1,4 +1,4 @@
-import { httpClient } from "../lib/http-client";
+import { httpClient } from "../../../lib/http-client";
 import { Message, SendMessageInput } from "../types/chat.type";
 
 export async function sendMessageRequest(

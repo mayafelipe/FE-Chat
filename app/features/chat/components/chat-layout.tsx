@@ -1,7 +1,7 @@
 "use client";
-import { useChatStore } from "@/app/store/chat-store";
-import MessageInput from "../../message/components/message-input";
-import MessageList from "../../message/components/message-list";
+import { useChatStore } from "@/app/features/chat/store/chat-store";
+import MessageInput from "./message-input";
+import MessageList from "./message-list";
 import { ChatSiderbar } from "./chat-sidebar";
 import { useEffect } from "react";
 
