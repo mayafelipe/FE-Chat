@@ -2,67 +2,59 @@ import { Message } from "@/app/types/chat.type";
 
 export const messagesMock: Message[] = [
   {
-    id: "1",
-    role: "user",
-    user: "Felipe57",
-    content:
+    _id: "1",
+    author: "Felipe57",
+    message:
       "Hello world. this is a new moment to discover the most amazing experiences",
-    date: "June 15, 2015",
+    createdAt: "June 15, 2015",
   },
   {
-    id: "2",
-    role: "user",
-    user: "Luy12",
-    content:
+    _id: "2",
+    author: "Luy12",
+    message:
       "Hello world2. this is a new moment to discover the most amazing experiences 2",
-    date: "June 17, 2015",
+    createdAt: "June 17, 2015",
   },
   {
-    id: "3",
-    role: "user",
-    user: "Felipe57",
-    content:
+    _id: "3",
+    author: "Felipe57",
+    message:
       "Hello world. this is a new moment to discover the most amazing experiences",
-    date: "June 15, 2015",
+    createdAt: "June 15, 2015",
   },
   {
-    id: "4",
-    role: "user",
-    user: "Luy12",
-    content:
+    _id: "4",
+    author: "Luy12",
+    message:
       "Hello world2. this is a new moment to discover the most amazing experiences 2",
-    date: "June 17, 2015",
+    createdAt: "June 17, 2015",
   },
   {
-    id: "5",
-    role: "user",
-    user: "Felipe57",
-    content:
+    _id: "5",
+    author: "Felipe57",
+    message:
       "Hello world. this is a new moment to discover the most amazing experiences",
-    date: "June 15, 2015",
+    createdAt: "June 15, 2015",
   },
   {
-    id: "6",
-    role: "user",
-    user: "Luy12",
-    content:
+    _id: "6",
+    author: "Luy12",
+    message:
       "Hello world2. this is a new moment to discover the most amazing experiences 2",
-    date: "June 17, 2015",
+    createdAt: "June 17, 2015",
   },
   {
-    id: "7",
-    role: "user",
-    user: "Felipe57",
-    content:
+    _id: "7",
+    author: "Felipe57",
+    message:
       "Hello world. this is a new moment to discover the most amazing experiences",
-    date: "June 15, 2015",
+    createdAt: "June 15, 2015",
   },
   {
-    id: "8",
-    role: "user1",
-    user: "Luy12",
-    content:
+    _id: "8",
+    author: "Luy12",
+    message:
       "Hello world2. this is a new moment to discover the most amazing experiences 2",
-    date: "June 17, 2015",
+    createdAt: "June 17, 2015",
   },
 ];

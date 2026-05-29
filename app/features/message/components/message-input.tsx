@@ -1,23 +1,26 @@
 "use client";
 
 import { useChatStore } from "@/app/store/chat-store";
-import React, { KeyboardEvent, useState } from "react";
+import React, { JSX, KeyboardEvent, useState } from "react";
 
-const MessageInput = () => {
+const MessageInput = (): JSX.Element => {
   const [message, setMessage] = useState<string>("");
   const { sendMessage } = useChatStore();
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async() => {
     if (!message.trim()) return;
     const currentMessage = message;
     setMessage("");
-    sendMessage(currentMessage);
+    await sendMessage({
+      message: currentMessage,
+      author: "Felipe Maya"
+    });
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      handleSendMessage();
+      await handleSendMessage();
     }
   };
   return (
