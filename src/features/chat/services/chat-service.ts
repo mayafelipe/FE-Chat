@@ -1,4 +1,3 @@
-
 import { httpClient } from "../../../lib/http-client";
 import { Message, SendMessageInput } from "../types/chat.type";
 
@@ -13,10 +12,13 @@ export async function sendMessageRequest(
   return response;
 }
 
-export async function getMessagesRequest(): Promise<Message[]> {
-  const response = await httpClient<Message[]>("/api/v1/messages", {
-    method: "GET",
-  });
-
+export async function getMessagesRequest(
+  after?: string,
+  limit = 20,
+): Promise<Message[]> {
+  const response = await httpClient<Message[]>(
+    `/api/v1/messages?after=${after}&limit=${limit}`,
+    { method: "GET" },
+  );
   return response;
 }

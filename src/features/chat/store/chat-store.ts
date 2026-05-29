@@ -57,7 +57,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
     });
     try {
       //Get messages
-      const response = await getMessagesRequest();
+      const response = await getMessagesRequest("2023-01-01T00:00:00.000Z");
 
       //Update chat state
       set({
