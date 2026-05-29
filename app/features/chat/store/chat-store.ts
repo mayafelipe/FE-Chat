@@ -10,6 +10,7 @@ interface ChatState {
   isLoading: boolean;
   sendMessage: (content: SendMessageInput) => Promise<void>;
   getMessages: () => Promise<void>;
+  retryMessage: (messageId: string) => Promise<void>;
 }
 
 export const useChatStore = create<ChatState>((set, get) => ({
@@ -32,15 +33,16 @@ export const useChatStore = create<ChatState>((set, get) => ({
       });
 
       //Fetch messages when post is successful
-      await get().getMessages()
+      await get().getMessages();
     } catch {
       set({
         messages: [
           ...get().messages,
           {
             _id: crypto.randomUUID(),
-            message: "An error occurred while connecting to the API.",
-            author: "assistant",
+            message: content.message,
+            author: content.author,
+            status: "error",
             createdAt: new Date().toISOString(),
           },
         ],
@@ -72,6 +74,41 @@ export const useChatStore = create<ChatState>((set, get) => ({
             createdAt: new Date().toISOString(),
           },
         ],
+      });
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+  retryMessage: async (messageId) => {
+    const failedMessage = get().messages.find(
+      (message) => message._id === messageId,
+    );
+        console.log(failedMessage)
+
+    if (!failedMessage) return;
+
+    set({
+      messages: get().messages.map((message) =>
+        message._id === messageId ? { ...message, status: "sending" } : message,
+      ),
+      isLoading: true,
+    });
+
+    try {
+      const assistantMessage = await sendMessageRequest(failedMessage);
+
+      //Update chat state
+      set({
+        messages: [...get().messages, assistantMessage],
+      });
+
+      //Fetch messages when post is successful
+      await get().getMessages();
+    } catch {
+      set({
+        messages: get().messages.map((message) =>
+          message._id === messageId ? { ...message, status: "error" } : message,
+        ),
       });
     } finally {
       set({ isLoading: false });

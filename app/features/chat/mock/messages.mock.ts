@@ -52,9 +52,10 @@ export const messagesMock: Message[] = [
   },
   {
     _id: "8",
-    author: "Luy12",
+    author: "Felipe Maya",
     message:
       "Hello world2. this is a new moment to discover the most amazing experiences 2",
     createdAt: "June 17, 2015",
+    status: "error"
   },
 ];

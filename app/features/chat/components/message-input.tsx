@@ -6,10 +6,10 @@ import { AUTHOR } from "../constants/chat-constants";
 
 const MessageInput = (): JSX.Element => {
   const [message, setMessage] = useState<string>("");
-  const { sendMessage } = useChatStore();
+  const { sendMessage, isLoading } = useChatStore();
 
   const handleSendMessage = async() => {
-    if (!message.trim()) return;
+    if (!message.trim() || isLoading) return;
     const currentMessage = message;
     setMessage("");
     await sendMessage({
@@ -36,6 +36,7 @@ const MessageInput = (): JSX.Element => {
         />
         <button
           onClick={handleSendMessage}
+          disabled={isLoading}
           className="rounded-md bg-red-400 px-6 py-3 font-semibold text-white "
         >
           Send
